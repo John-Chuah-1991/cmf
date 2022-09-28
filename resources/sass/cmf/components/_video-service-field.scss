@@ -1,0 +1,50 @@
+@include block(video-service-field)
+{
+    @include element(input)
+    {
+        display: block;
+        width: 100%;
+        border: 1px solid $color06;
+        border-radius: $border-radius-3;
+        padding: $rule / 4;
+
+        &:focus
+        {
+            border-color: $color03;
+        }
+    }
+
+    @include element(preview)
+    {
+        position: relative;
+    }
+
+    @include element(service)
+    {
+        position: absolute;
+        z-index: 2;
+        top: $rule / 6;
+        right: $rule / 6;
+        padding: $rule / 6 $rule / 4;
+        background-color: $color01;
+        border-radius: $border-radius-3;
+    }
+
+    @include element(thumbnail)
+    {
+        position: relative;
+        display: block;
+        width: 100%;
+        border: $border-width-1 solid $color06;
+        border-radius: $border-radius-3;
+        padding: $rule / 2;
+        background-color: $color01;
+        margin-top: $rule / 4;
+
+        img
+        {
+            display: block;
+            width: 100%;
+        }
+    }
+}

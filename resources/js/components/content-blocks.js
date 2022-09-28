@@ -30,6 +30,8 @@ export default class ContentBlocks extends React.Component {
             addedBlocks: [],
             blockIdsToRemove: []
         };
+
+        this.dropdownRef = React.createRef();
     }
 
     componentDidUpdate(prevProps) {
@@ -188,6 +190,8 @@ export default class ContentBlocks extends React.Component {
         this.setState({
             addedBlocks: addedBlocks
         });
+
+        this.dropdownRef.current.close();
     }
 
     renderAddBlockDropdown() {
@@ -201,7 +205,7 @@ export default class ContentBlocks extends React.Component {
         }
 
         return (
-            <Dropdown text={'Add '+this.props.singular} openIcon={'post_add'} closeIcon={'post_add'}>
+            <Dropdown text={'Add '+this.props.singular} openIcon={'post_add'} closeIcon={'post_add'} ref={this.dropdownRef}>
                 <LinkList links={links} onClick={this.addBlock.bind(this)} />
             </Dropdown>
         );
