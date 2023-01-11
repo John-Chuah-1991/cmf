@@ -17,12 +17,19 @@ class Cmf
     private ModuleRegistry $modules;
 
     /**
+     * @var ComponentRegistry $components
+     */
+    private ComponentRegistry $components;
+
+
+    /**
      * Cmf constructor.
      * @param ModuleRegistry $modules
      */
-    public function __construct(ModuleRegistry $modules)
+    public function __construct(ModuleRegistry $modules, ComponentRegistry $components)
     {
         $this->modules = $modules;
+        $this->components = $components;
     }
 
     /**
@@ -33,6 +40,17 @@ class Cmf
     public function getVersion(): string
     {
         return '0.1.23';
+    }
+
+    /**
+     * @param array $components
+     * @return void
+     */
+    public function registerComponents(array $components)
+    {
+        foreach ($components as $component) {
+            $this->components->add($component);
+        }
     }
 
     /**

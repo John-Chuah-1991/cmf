@@ -1,10 +1,13 @@
 import React from 'react';
 import all from "../components/all";
+import ComponentRegistry from "../registry/component-registry";
+
+const registry = new ComponentRegistry(all);
 
 export default {
     renderComponent(component, data, path) {
         if (component) {
-            const Component = all[component.type];
+            const Component = registry.get(component.type);
             return (
                 <Component {...component} data={data} path={path} />
             );
@@ -12,7 +15,7 @@ export default {
     },
     renderComponents(components, data, path) {
         return components.map((component, i) => {
-            const Component = all[component.type];
+            const Component = registry.get(component.type);
             return (
                 <Component {...component} data={data} path={path} key={i} />
             );
@@ -22,13 +25,8 @@ export default {
 
         return components.map((component, i) => {
 
-            let ref = null;
-
-            if (refs) {
-                ref = React.createRef();
-            }
-
-            let Component = all[component.type];
+            let ref = (refs ? React.createRef() : null);
+            let Component = registry.get(component.type);
             let rendered = renderCallback(<Component {...component} data={data} errors={errors} path={path} ref={ref} />, i);
 
             return {

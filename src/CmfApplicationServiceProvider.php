@@ -16,13 +16,22 @@ class CmfApplicationServiceProvider extends ServiceProvider
 
         $cmf->serving(function (ServingCmf $event) use ($cmf) {
             $cmf->registerModules($this->modules());
+            $cmf->registerComponents($this->components());
         });
     }
 
     /**
      * @return array
      */
-    protected function modules(): array
+    public function modules(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function components(): array
     {
         return [];
     }
